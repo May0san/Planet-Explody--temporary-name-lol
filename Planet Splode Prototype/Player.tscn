@@ -3,8 +3,8 @@
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Visual Assets/Player Sprites-Sheet.png" type="Texture" id=2]
 
-[sub_resource type="CapsuleShape2D" id=19]
-radius = 16.0
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 16, 16 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )

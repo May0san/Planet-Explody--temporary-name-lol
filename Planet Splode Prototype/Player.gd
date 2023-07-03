@@ -10,6 +10,7 @@ var dragConstant = 0.5*3/2
 var generalFriction = 200
 var slideSlowdown = 300
 var maxFallSpeed = 400
+var flop = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -68,6 +69,9 @@ func movement(delta):
 		if Input.is_action_pressed("jump"):
 			velocity += Vector2.LEFT * maxFallSpeed
 	
+	if is_on_ceiling():
+		velocity.y = 0
+	
 	velocity += (acceleration * delta) - (dragConstant * velocity * delta)
 	if abs(velocity.x) < minXSpeed && acceleration.x == 0:
 		velocity.x = 0
@@ -76,8 +80,15 @@ func movement(delta):
 	
 	if is_on_floor():
 		if get_floor_angle(Vector2.UP) == 0:
-			velocity.y = -500
+			flop = true
+			velocity.y = -150
 			velocity.x = 0
+	if flop:
+		pass
+	
+	if velocity.y > 160:
+		flop = false
+		
 	#	print(get_floor_angle(Vector2.UP))
 	
 	print(velocity)
